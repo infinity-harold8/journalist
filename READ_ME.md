@@ -49,3 +49,13 @@ https://axios.rest/pages/getting-started/first-steps
 install lucide for icons
 npm install lucide-react
 https://lucide.dev/guide/react/getting-started
+
+npm uninstall daisyui tailwindcss axios
+npm uninstall tailwindvite
+
+We will use
+RTK Query
+Redux
+Plain CSS for the styling
+
+npm install react-redux

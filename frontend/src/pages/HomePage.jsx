@@ -1,13 +1,12 @@
 import React from "react";
-import axios from "axios";
 import { useEffect, useState } from "react";
 
 const HomePage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/users/get");
-        console.log("Fetched data:", response.data);
+        // const response = await axios.get("http://localhost:5000/api/users/get");
+        // console.log("Fetched data:", response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }

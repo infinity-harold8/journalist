@@ -1,0 +1,8 @@
+.navigation_bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  border-bottom: 1px solid rgb(210, 210, 210);
+  height: auto;
+}

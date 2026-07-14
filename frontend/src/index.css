@@ -1,6 +1,51 @@
-@import "tailwindcss";
+/* @import "tailwindcss";
 @plugin "daisyui" {
   themes:
     light --default,
     corporate;
+} */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Base application wrapper setup */
+body {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  background-color: white;
+  color: black;
+  min-height: 100vh;
+}
+
+.app_root {
+  padding: 0;
+  margin: 0;
+  height: auto;
+  width: auto;
+  border: 1px solid black;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.admin_side_bar {
+  width: 200px;
+  height: 100vh;
+  /* background-color: white; */
+  border-right: 1px solid #ccc;
+  padding: 20px;
+}
+
+.main_content {
+  flex: 1;
+  padding: 20px;
+  height: 100vh;
 }

@@ -58,4 +58,4 @@ RTK Query
 Redux
 Plain CSS for the styling
 
-npm install react-redux
+npm install @reduxjs/toolkit react-redux

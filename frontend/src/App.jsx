@@ -1,31 +1,28 @@
-import { Route, Routes } from "react-router";
+import { Route, Routes } from "react-router-dom";
 
-// Libraries
-import { useSelector, useDispatch } from "react-redux";
-import { decrement, increment } from "./features/counter/counterSlice.js";
-// import toast from "react-hot-toast";
-// import axios from "axios"; -- Uninstalled
+// import { useSelector, useDispatch } from "react-redux";
+// import { decrement, increment } from "./features/counter/counterSlice.js";
 
-// Application Pages
-import HomePage from "./pages/HomePage.jsx";
+import Dashboard from "./pages/Dashboard.jsx";
 import UserPage from "./pages/users/Page.jsx";
 import ReportPage from "./pages/reports/Page.jsx";
-import AuthLogin from "./pages/auth/AuthLogin.jsx";
+import AuthLogin from "./pages/auth/Page.jsx";
 
-// Application Component
 import NavigationBar from "./components/NavigationBar.jsx";
 
 const App = () => {
-  const isAdmin = true; // Replace with actual logic to determine if the user is an admin
+  const isAdmin = true;
 
-  const count = useSelector((state) => state.counter.value);
-  const dispatch = useDispatch();
+  // const count = useSelector((state) => state.counter.value);
+  // const dispatch = useDispatch();
 
   return (
     <div className="app_root">
       {isAdmin && <div className="admin_side_bar">Admin Content</div>}
+
       <div className="main_content">
         <NavigationBar />
+        {/* 
         <div>
           <button
             aria-label="Increment value"
@@ -33,16 +30,19 @@ const App = () => {
           >
             Increment
           </button>
+
           <span>{count}</span>
+
           <button
             aria-label="Decrement value"
             onClick={() => dispatch(decrement())}
           >
             Decrement
           </button>
-        </div>
+        </div> */}
+
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<Dashboard />} />
           <Route path="/users" element={<UserPage />} />
           <Route path="/reports" element={<ReportPage />} />
           <Route path="/login" element={<AuthLogin />} />

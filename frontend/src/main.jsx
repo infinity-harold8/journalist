@@ -13,7 +13,7 @@ import { Provider } from "react-redux";
 
 // Application
 import App from "./App.jsx";
-import store from "./app/store.js";
+import { store } from "./app/store.js";
 
 // Default
 // createRoot(document.getElementById("root")).render(

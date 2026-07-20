@@ -1,24 +1,48 @@
 import { useState } from "react";
+
+// This will be use for Redux Slicer
 import { useSelector, useDispatch } from "react-redux";
-import { login, logout } from "../../features/auth/authSlice.js";
+
+import { setUser, clearUser } from "../../features/auth/authSlice.js";
+
+// Getting the mutation hook from AuthAPI
+import {
+  authApi,
+  useLoginMutation,
+  useLogoutMutation,
+} from "../../features/auth/authAPI.js";
 
 const AuthLogin = () => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
-  const auth = useSelector((state) => state.auth);
+  // Useful in Slicer - we will not set the user after login
+  const auth = useSelector((slicer) => slicer.auth);
   const dispatch = useDispatch();
-  const handleSubmit = (event) => {
+
+  // Use mutation hook is from RTK Query where I can call the login mutation and get the result, error, loading state, etc.
+  const [login, { data, isSuccess, isError }] = useLoginMutation();
+  const [logout] = useLogoutMutation();
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    dispatch(
-      login({
-        userName,
+
+    try {
+      // Referencing the Login Mutation to send data to the backend then we will get the immediate response from the backend using unwrap? not sure kung tama pagkakaintindi ko
+      const response = await login({
+        user_name: userName,
         password,
-      }),
-    );
-    console.log("Username:", userName);
-    console.log("Password:", password);
-    console.log("Auth State:", auth);
+      }).unwrap();
+      // console.log("test", data, error, isLoading, isSuccess, isError);
+
+      // Set Auth Slicer For user
+      dispatch(setUser(data));
+
+      // Response with Message only much better since we can use the data from return value within Redux Api
+      console.log("Login successful:", response.message);
+    } catch (error) {
+      console.log("Login failed:", error);
+    }
   };
 
   return (
@@ -49,19 +73,23 @@ const AuthLogin = () => {
         </div>
 
         <button type="submit">Login</button>
+
+        {isError && <p> Login failed</p>}
       </form>
+
       <button
-        onClick={() => {
-          dispatch(logout());
+        onClick={async (event) => {
+          event.preventDefault();
+          const isLoggingOut = await logout().unwrap();
+          console.log("Logged out successfully", isLoggingOut.message);
+          dispatch(clearUser());
+          dispatch(authApi.util.resetApiState());
           setUserName("");
           setPassword("");
         }}
       >
         Logout
       </button>
-      <h2>Redux Authentication State</h2>
-
-      <pre>{JSON.stringify(auth, null, 2)}</pre>
     </div>
   );
 };

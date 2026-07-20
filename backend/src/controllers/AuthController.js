@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 const login = async (request, response) => {
   try {
     const { user_name, password } = request.body;
-
+    // console.log("Login request received with:", { user_name, password });
     const user = await User.findOne({ user_name });
     if (!user) {
       return response
@@ -43,13 +43,17 @@ const login = async (request, response) => {
     });
 
     return response.status(200).json({
+      success: true,
+      isSuccess: true,
       message: "Logged in successfully",
       token: accessToken,
-      user: user,
+      data: user,
     });
   } catch (error) {
     console.error(error);
-    return response.status(500).json({ message: "Someting went wrong!" });
+    return response
+      .status(500)
+      .json({ message: "Someting went wrong!", isError: true });
   }
 };
 
@@ -69,7 +73,18 @@ const logout = async (request, response) => {
   }
 };
 
+const getCurrentUser = async (request, response) => {
+  try {
+    const { id } = request.params;
+    const users = await User.findById(id);
+    return response.status(HTTP_STATUS.OK.status).json(users);
+  } catch (error) {
+    console.log("Error: ", error);
+  }
+};
+
 module.exports = {
   login,
   logout,
+  getCurrentUser,
 };

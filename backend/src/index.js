@@ -23,18 +23,19 @@ const connectToDatabase = require("./configurations/Database");
 const authRouter = require("./routes/AuthRoutes");
 const userRouter = require("./routes/UserRoutes");
 
-// Middlewares
-app.use(express.json());
-app.use(cookieParser());
-
 if (process.env.ENVIRONMENT !== "production") {
   // console.log(true);
   app.use(
     cors({
       origin: process.env.DEVELOPMENT_HOSTNAME,
+      credentials: true,
     }),
   );
 }
+
+// Middlewares
+app.use(express.json());
+app.use(cookieParser());
 
 // Use Routes
 app.use("/api/auth", authRouter);

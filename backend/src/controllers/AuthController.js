@@ -1,11 +1,12 @@
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const { HTTP_STATUS } = require("../configurations/constants/HTTP_STATUSES");
 
 const login = async (request, response) => {
   try {
     const { user_name, password } = request.body;
-    // console.log("Login request received with:", { user_name, password });
+
     const user = await User.findOne({ user_name });
     if (!user) {
       return response
@@ -25,7 +26,7 @@ const login = async (request, response) => {
         id: user._id,
       },
       process.env.JWT_SECRET,
-      { expiresIn: "1d" },
+      { expiresIn: "15m" },
     );
 
     const refreshToken = jwt.sign(
@@ -36,24 +37,31 @@ const login = async (request, response) => {
       { expiresIn: "1d" },
     );
 
-    response.cookie("jwt", refreshToken, {
+    response.cookie("accessToken", accessToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "lax",
+      // path: "/",
+      // maxAge: 15 * 60 * 1000,
+    });
+
+    response.cookie("refreshToken", refreshToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      // path: "/api/auth",
+      // maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
     return response.status(200).json({
-      success: true,
+      message: "Login successful.",
       isSuccess: true,
-      message: "Logged in successfully",
-      token: accessToken,
-      data: user,
+      // accessToken,
+      user,
     });
   } catch (error) {
     console.error(error);
-    return response
-      .status(500)
-      .json({ message: "Someting went wrong!", isError: true });
+    return response.status(500).json({ message: "Someting went wrong!" });
   }
 };
 
@@ -75,11 +83,21 @@ const logout = async (request, response) => {
 
 const getCurrentUser = async (request, response) => {
   try {
-    const { id } = request.params;
-    const users = await User.findById(id);
-    return response.status(HTTP_STATUS.OK.status).json(users);
+    // const { id } = request.params;
+    // console.log(id);
+    // const user = await User.findById(id);
+    // console.log(request.user);
+    // console.log(HTTP_STATUS.OK.status);
+    return response.status(200).json({
+      message: "Current user retrieved.",
+      isSuccess: true,
+      user: request.user,
+    });
   } catch (error) {
-    console.log("Error: ", error);
+    return;
+    return response
+      .status(500)
+      .json({ message: "Something went wrong! ", isSuccess: false });
   }
 };
 

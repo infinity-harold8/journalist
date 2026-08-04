@@ -6,6 +6,16 @@ export const authApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:5000/api",
     credentials: "include",
+
+    // prepareHeaders: (headers, { getState }) => {
+    //   const accessToken = getState().auth.accessToken;
+    //   console.log(accessToken);
+    //   if (accessToken) {
+    //     headers.set("authorization", `Bearer ${accessToken}`);
+    //   }
+
+    //   return headers;
+    // },
   }),
 
   endpoints: (builder) => ({

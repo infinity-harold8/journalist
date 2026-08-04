@@ -3,18 +3,24 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { useGetCurrentUserQuery } from "./features/auth/authAPI.js";
 
 import Dashboard from "./pages/Dashboard.jsx";
+import ReportPage from "./pages/reports/page.jsx";
 import AuthLogin from "./pages/auth/Page.jsx";
 
 import LoginRoute from "./routes/LoginRoute.jsx";
 import AuthenticatedRoute from "./routes/AuthenticatedRoute.jsx";
 
 const App = () => {
-  const { isLoading, isError, error } = useGetCurrentUserQuery();
+  const currentUserQuery = useGetCurrentUserQuery(undefined, {
+    refetchOnMountOrArgChange: true,
+  });
 
-  console.log("Session check:", {
-    isLoading,
-    isError,
-    error,
+  console.log("Current user query:", {
+    isLoading: currentUserQuery.isLoading,
+    isFetching: currentUserQuery.isFetching,
+    isSuccess: currentUserQuery.isSuccess,
+    isError: currentUserQuery.isError,
+    data: currentUserQuery.user,
+    error: currentUserQuery.error,
   });
 
   return (
@@ -26,6 +32,7 @@ const App = () => {
 
         <Route element={<AuthenticatedRoute />}>
           <Route path="/" element={<Dashboard />} />
+          <Route path="/reports" element={<ReportPage />} />
         </Route>
 
         <Route path="*" element={<Navigate to="/" replace />} />

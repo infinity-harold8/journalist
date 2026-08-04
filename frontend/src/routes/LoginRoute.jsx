@@ -1,21 +1,17 @@
 import { Navigate, Outlet } from "react-router-dom";
-
 import { useSelector } from "react-redux";
 
 const LoginRoute = () => {
   const { isAuthenticated, isAuthReady } = useSelector((state) => state.auth);
+  console.log(isAuthReady);
+  if (!isAuthReady) {
+    return <div>Checking authentication...</div>;
+  }
 
-  // Wait for /auth/me before deciding
-  // if (!isAuthReady) {
-  //   return <p>Checking session...</p>;
-  // }
-
-  // Already logged in: do not show login page
   if (isAuthenticated) {
     return <Navigate to="/" replace />;
   }
 
-  // Not logged in: show the login page
   return <Outlet />;
 };
 

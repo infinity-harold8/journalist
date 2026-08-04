@@ -1,9 +1,9 @@
 import { useState } from "react";
 
 // This will be use for Redux Slicer
-import { useSelector, useDispatch } from "react-redux";
+// import { useSelector, useDispatch } from "react-redux";
 
-import { setUser, clearUser } from "../../features/auth/authSlice.js";
+// import { setUser, clearUser } from "../../features/auth/authSlice.js";
 
 // Getting the mutation hook from AuthAPI
 import {
@@ -12,17 +12,17 @@ import {
   useLogoutMutation,
 } from "../../features/auth/authAPI.js";
 
-const AuthLogin = () => {
+export default function AuthLogin() {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
   // Useful in Slicer - we will not set the user after login
-  const auth = useSelector((slicer) => slicer.auth);
-  const dispatch = useDispatch();
+  // const auth = useSelector((slicer) => slicer.auth);
+  // const dispatch = useDispatch();
 
   // Use mutation hook is from RTK Query where I can call the login mutation and get the result, error, loading state, etc.
   const [login, { data, isSuccess, isError }] = useLoginMutation();
-  const [logout] = useLogoutMutation();
+  // const [logout] = useLogoutMutation();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -36,7 +36,7 @@ const AuthLogin = () => {
       // console.log("test", data, error, isLoading, isSuccess, isError);
 
       // Set Auth Slicer For user
-      dispatch(setUser(data));
+      // dispatch(setUser(data));
 
       // Response with Message only much better since we can use the data from return value within Redux Api
       console.log("Login successful:", response.message);
@@ -60,7 +60,6 @@ const AuthLogin = () => {
             onChange={(event) => setUserName(event.target.value)}
           />
         </div>
-
         <div>
           <label htmlFor="password">Password</label>
 
@@ -71,13 +70,12 @@ const AuthLogin = () => {
             onChange={(event) => setPassword(event.target.value)}
           />
         </div>
-
         <button type="submit">Login</button>
 
         {isError && <p> Login failed</p>}
       </form>
 
-      <button
+      {/* <button
         onClick={async (event) => {
           event.preventDefault();
           const isLoggingOut = await logout().unwrap();
@@ -89,9 +87,7 @@ const AuthLogin = () => {
         }}
       >
         Logout
-      </button>
+      </button> */}
     </div>
   );
-};
-
-export default AuthLogin;
+}

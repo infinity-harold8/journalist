@@ -1,21 +1,19 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 
-const authenticate = (request, response, next) => {
+const authenticate = async (request, response, next) => {
   try {
     // Show access token first
-    const token = request.headers["authorization"]?.split(" ")[1];
-
+    // const token = request.headers["authorization"]?.split(" ")[1];
+    const token = request.cookies?.accessToken;
+    // console.log("Token is Undefined", token);
+    // console.log(headers);
     if (!token) {
-      console.log(token);
-      return response.status(403).json({
-        message: "Forbidden!",
-        isAuthenticated: false,
-        isAuthReady: false,
-      });
+      return response.status(403).json({ message: "Forbidden!" });
     }
 
     jwt.verify(token, process.env.JWT_SECRET, async (error, decoded) => {
+      // console.log(error);
       if (error) {
         return response
           .status(401)
@@ -23,13 +21,15 @@ const authenticate = (request, response, next) => {
       }
 
       const user = await User.findById(decoded.id);
-
+      // console.log(user);
       if (!user) {
         return response.status(404).json({ message: "User not Found! " });
       }
 
       request.user = user;
-      next();
+      // request.isSuccess = true;
+      // request.user_id = decoded.id;
+      return next();
     });
   } catch (error) {
     console.error(error);
@@ -48,7 +48,7 @@ const authorize = (roles) => {
         .status(403)
         .json({ message: "Forbidden: Access Denied!" });
     }
-    console.log(request.user);
+
     next();
   };
 };

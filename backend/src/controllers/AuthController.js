@@ -6,7 +6,7 @@ const { HTTP_STATUS } = require("../configurations/constants/HTTP_STATUSES");
 const login = async (request, response) => {
   try {
     const { user_name, password } = request.body;
-
+    console.log(user_name, password);
     const user = await User.findOne({ user_name });
     if (!user) {
       return response
@@ -37,26 +37,22 @@ const login = async (request, response) => {
       { expiresIn: "1d" },
     );
 
-    response.cookie("accessToken", accessToken, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "lax",
-      // path: "/",
-      // maxAge: 15 * 60 * 1000,
-    });
+    // response.cookie("accessToken", accessToken, {
+    //   httpOnly: true,
+    //   secure: process.env.NODE_ENV === "production",
+    //   sameSite: "lax",
+    // });
 
     response.cookie("refreshToken", refreshToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "lax",
-      // path: "/api/auth",
-      // maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
     return response.status(200).json({
       message: "Login successful.",
       isSuccess: true,
-      // accessToken,
+      accessToken,
       user,
     });
   } catch (error) {
@@ -94,7 +90,7 @@ const getCurrentUser = async (request, response) => {
       user: request.user,
     });
   } catch (error) {
-    return;
+    // return;
     return response
       .status(500)
       .json({ message: "Something went wrong! ", isSuccess: false });

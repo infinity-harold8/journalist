@@ -1,7 +1,10 @@
-import React from "react";
+import { React, useState } from "react";
+import { useGetCurrentUser } from "../application/api/authApi";
 
 const Me = () => {
-  return <div>Me</div>;
+  const getCurrentUser = useGetCurrentUser();
+  console.log(getCurrentUser);
+  return <div>Me {getCurrentUser}</div>;
 };
 
 export default Me;

@@ -4,8 +4,8 @@ const User = require("../models/User");
 const authenticate = async (request, response, next) => {
   try {
     // Show access token first
-    // const token = request.headers["authorization"]?.split(" ")[1];
-    const token = request.cookies?.accessToken;
+    const token = request.headers["authorization"]?.split(" ")[1];
+    // const token = request.cookies?.accessToken;
     // console.log("Token is Undefined", token);
     // console.log(headers);
     if (!token) {

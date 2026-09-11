@@ -1,0 +1,116 @@
+.login_container {
+  display: flex;
+  top: 0;
+  left: 0;
+  padding: 0;
+  margin: 0;
+  box-sizing: content-box;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+  height: 100vh;
+}
+
+.login_panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+
+.company_img_panel {
+  width: 50%;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  background-image: url("../../../assets/new-building.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.building_image {
+  height: 100%;
+  width: auto;
+  object-fit: cover;
+  background-position: center;
+}
+
+.login_contents {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  height: 80vh;
+}
+.login_contents h2 {
+  color: black;
+}
+
+.login_contents div {
+  color: gray;
+}
+.login_contents button {
+  width: 100%;
+  font-weight: bold;
+  border-radius: 5px;
+  border: 1px solid gray;
+  color: white;
+  background-color: rgb(27, 152, 27);
+  padding: 10px;
+}
+
+.login_contents button:hover {
+  background-color: rgb(62, 187, 62);
+}
+
+.company_logo {
+  width: 60%;
+  height: 15%;
+  padding: 20px 20px 40px 20px;
+}
+
+.logo_input_contents {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 10px;
+}
+
+.logo_input_contents label {
+  margin-bottom: 5px;
+}
+
+.logo_input_contents input {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  border: 1px solid gray;
+}
+
+.login_header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 20px;
+}
+
+.login_buttons {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: end;
+}
+
+.login_footer {
+  /* font-weight: bold; */
+  padding: 15px;
+  text-align: center;
+}

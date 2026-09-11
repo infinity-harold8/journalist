@@ -1,0 +1,6 @@
+.login_layout_container {
+  display: flex;
+  top: 0;
+  left: 0;
+  padding: 10px;
+}

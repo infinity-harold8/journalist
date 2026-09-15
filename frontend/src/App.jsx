@@ -5,10 +5,12 @@ import { Routes, Route } from "react-router";
 import Login from "./pages/auth/Login";
 // import LoginLayout from "./layouts/LoginLayout";
 // import LoginRoute from "./routes/LoginRoute";
-// import AuthenticatedRoute from "./routes/AuthenticatedRoute";
+import AuthenticatedRoute from "./routes/AuthenticatedRoute";
 // import Me from "./pages/Me";
+// import AuthenticatedLayout from "./layouts/AuthenticatedLayout";
 import Dashboard from "./pages/Dashboard";
 import Reports from "./pages/reports/page";
+import Users from "./pages/Users";
 
 const App = () => {
   return (
@@ -19,11 +21,12 @@ const App = () => {
         {/* </Route> */}
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/reports" element={<Reports />} />
-        {/* <Route element={<AuthenticatedRoute />}>
-          <Route path="/" element={<Me />} />
-        </Route>
 
-        <Route path="*" element={<Navigate to="/" replace />} /> */}
+        {/* <Route element={<AuthenticatedRoute page_title={"Users"} />}> */}
+        <Route path="/users" element={<Users />} />
+        {/* </Route> */}
+
+        {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
       </Routes>
     </div>
   );

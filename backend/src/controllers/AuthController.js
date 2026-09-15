@@ -26,7 +26,7 @@ const login = async (request, response) => {
         id: user._id,
       },
       process.env.JWT_SECRET,
-      { expiresIn: "15s" },
+      { expiresIn: "15m" },
     );
 
     const refreshToken = jwt.sign(
@@ -131,7 +131,7 @@ const refreshAccessToken = async (request, response) => {
             id: user._id,
           },
           process.env.JWT_SECRET,
-          { expiresIn: "15s" },
+          { expiresIn: "15m" },
         );
 
         return response.status(200).json({

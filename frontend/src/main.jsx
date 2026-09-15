@@ -9,6 +9,8 @@ import "./index.css";
 import "./styles/layouts/login/styles.css";
 import "./styles/pages/login/styles.css";
 import "./styles/pages/reports/styles.css";
+import "./styles/pages/users/styles.css";
+import "./styles/pages/libraries/lucide_styles.css";
 
 import App from "./App.jsx";
 

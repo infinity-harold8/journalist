@@ -1,5 +1,7 @@
 // import React from 'react'
 import CompanyLogo from "../../assets/logo.png";
+import { CircleArrowLeft } from "lucide-react";
+import { Link } from "react-router";
 
 function TermsOfService() {
   return (
@@ -12,6 +14,9 @@ function TermsOfService() {
             height={60}
             // className="company_logo"
           />
+          <Link to="/" className="tos_header_back_btn">
+            <CircleArrowLeft width={40} height={40} />
+          </Link>
         </div>
         <div className="tos_body">
           <div className="tos_body_title">JOURNALIST</div>

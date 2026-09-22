@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useLoginMutation } from "../../application/api/authApi";
 import { setCredentials, setUser } from "../../application/features/authSlice";
-import { useNavigate } from "react-router";
+import { useNavigate, Link } from "react-router";
 // import LogoBuilding from "../../assets/logo_building.png";
 import CompanyLogo from "../../assets/logo.png";
 
@@ -70,7 +70,10 @@ function Login() {
           </div>
           <div className="login_footer">
             By clicking continue, you agree to our{" "}
-            <b>Terms of Service and Privacy</b>
+            <b>
+              <Link to={"/terms-of-service"}>Terms of Service</Link> and{" "}
+              <Link to={"/privacy-policy"}>Privacy</Link>
+            </b>
           </div>
         </div>
       </form>

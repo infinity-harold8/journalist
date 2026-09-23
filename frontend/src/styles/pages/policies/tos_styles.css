@@ -123,3 +123,68 @@
 .tos_footer_other_information div b {
   font-weight: bold;
 }
+
+/* For Responsiveness */
+
+/* extra small phones resolution */
+@media screen and (min-width: 0px) and (max-width: 600px) {
+  .tos_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 400px;
+    /* border: 1px solid black; */
+    padding: 50px;
+    font-family: "Open Sans";
+  }
+}
+
+/* small phones */
+@media screen and (min-width: 601px) and (max-width: 768px) {
+  .tos_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 600px;
+    /* border: 1px solid black; */
+    padding: 50px;
+    font-family: "Open Sans";
+  }
+}
+
+/* tables size */
+@media screen and (min-width: 769px) and (max-width: 992px) {
+  .tos_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 720px;
+    /* border: 1px solid black; */
+    padding: 50px;
+    font-family: "Open Sans";
+  }
+}
+
+/* common desktop and laptop size */
+@media screen and (min-width: 993px) and (max-width: 1200px) {
+  .tos_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 900px;
+    /* border: 1px solid black; */
+    padding: 50px;
+    font-family: "Open Sans";
+  }
+}
+
+/* extra large desktop and laptop size */
+/* @media screen and (min-width: 1201px) {
+  .tos {
+    max-width: 1165px;
+  }
+} */

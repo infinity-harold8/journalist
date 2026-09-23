@@ -5,7 +5,7 @@ import { Routes, Route } from "react-router";
 import Login from "./pages/auth/Login";
 // import LoginLayout from "./layouts/LoginLayout";
 // import LoginRoute from "./routes/LoginRoute";
-import AuthenticatedRoute from "./routes/AuthenticatedRoute";
+// import AuthenticatedRoute from "./routes/AuthenticatedRoute";
 // import Me from "./pages/Me";
 // import AuthenticatedLayout from "./layouts/AuthenticatedLayout";
 import Dashboard from "./pages/Dashboard";

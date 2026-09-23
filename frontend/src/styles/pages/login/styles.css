@@ -114,3 +114,13 @@
   padding: 15px;
   text-align: center;
 }
+
+.login_footer b a {
+  color: rgb(20, 184, 166);
+  text-decoration: none;
+}
+
+.login_footer b a:hover {
+  color: rgb(27, 227, 204);
+  text-decoration-line: underline;
+}

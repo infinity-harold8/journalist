@@ -11,6 +11,8 @@ import "./styles/pages/login/styles.css";
 import "./styles/pages/reports/styles.css";
 import "./styles/pages/users/styles.css";
 import "./styles/pages/libraries/lucide_styles.css";
+import "./styles/pages/policies/tos_styles.css";
+import "./styles/pages/policies/pp_styles.css";
 
 import App from "./App.jsx";
 

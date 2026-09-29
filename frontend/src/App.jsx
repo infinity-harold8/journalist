@@ -5,7 +5,7 @@ import { Routes, Route } from "react-router";
 import Login from "./pages/auth/Login";
 // import LoginLayout from "./layouts/LoginLayout";
 // import LoginRoute from "./routes/LoginRoute";
-// import AuthenticatedRoute from "./routes/AuthenticatedRoute";
+import AuthenticatedRoute from "./routes/AuthenticatedRoute";
 // import Me from "./pages/Me";
 // import AuthenticatedLayout from "./layouts/AuthenticatedLayout";
 import Dashboard from "./pages/Dashboard";
@@ -21,14 +21,14 @@ const App = () => {
         {/* <Route element={<LoginRoute />}> */}
         <Route path="/" element={<Login />} />
         {/* </Route> */}
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/reports" element={<Reports />} />
-
-        {/* <Route element={<AuthenticatedRoute page_title={"Users"} />}> */}
-        <Route path="/users" element={<Users />} />
         <Route path="/terms-of-service" element={<TermsOfUse />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-        {/* </Route> */}
+
+        <Route element={<AuthenticatedRoute />}>
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/reports" element={<Reports />} />
+          <Route path="/users" element={<Users />} />
+        </Route>
 
         {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
       </Routes>
